@@ -585,6 +585,39 @@ a.btn{text-decoration:none}
 .desk .list-card.kb{display:grid}
 .mp-t,.fp-meta h1,.ft{letter-spacing:-.02em}
 .sp-num{font-weight:900}
+
+/* ================= VINYL touches ================= */
+@keyframes kkspin{to{transform:rotate(360deg)}}
+.kkrec,.kkmprec{display:none}
+.vinyl-groove{background:radial-gradient(circle,#FF5A1E 0 9%,#131110 9.5% 11%,transparent 11.5%),repeating-radial-gradient(circle,#0c0a09 0 2px,#1c1916 2px 3.5px)}
+/* records sliding out of the shelf covers */
+.tile{margin-right:40px}
+.tile .cv{overflow:visible}
+.tile .cv img{position:relative;z-index:2}
+.tile .kkrec{display:block;position:absolute;z-index:1;top:5%;left:40%;width:90%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#FF5A1E 0 9%,#131110 9.5% 11%,transparent 11.5%),repeating-radial-gradient(circle,#0c0a09 0 2px,#1c1916 2px 3.5px);
+  box-shadow:0 6px 14px rgba(0,0,0,.5);transition:left .25s ease}
+.tile:hover .kkrec{left:52%}
+.tile .tplay{z-index:3}
+/* the mix page: record behind the big cover, warm sunset background */
+.mp-hero .mp-cover{position:relative;z-index:2}
+.app:not(.desk) .kkmprec{display:block;position:absolute;z-index:1;width:56%;max-width:250px;aspect-ratio:1;border-radius:50%;left:38%;top:calc(env(safe-area-inset-top,0px) + 60px);
+  background:radial-gradient(circle,#FF5A1E 0 10%,#131110 10.5% 12%,transparent 12.5%),repeating-radial-gradient(circle,#0c0a09 0 2px,#1c1916 2px 3.5px);box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.desk .mp-hero{position:relative}
+.desk .kkmprec{display:block;position:absolute;z-index:1;width:220px;height:220px;border-radius:50%;left:calc(var(--gut,16px) + 108px);bottom:26px;
+  background:radial-gradient(circle,#FF5A1E 0 10%,#131110 10.5% 12%,transparent 12.5%),repeating-radial-gradient(circle,#0c0a09 0 2px,#1c1916 2px 3.5px);box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.desk .mp-hero > :not(.kkmprec):not(.mp-cover){position:relative;z-index:2;margin-left:70px}
+.mp-bg{background:linear-gradient(to bottom,#7a2a10 0%,#3a1a10 45%,var(--bg) 100%)!important}
+/* the playing cover is a record that spins while music plays */
+.mini img,.pb-l img{border-radius:50%!important;box-shadow:0 0 0 3px #0c0a09,0 0 0 4px rgba(255,255,255,.15);animation:kkspin 4s linear infinite;animation-play-state:paused}
+.fp-cover{border-radius:50%!important;width:72%!important;margin-top:24px!important;box-shadow:0 0 0 18px #0c0a09,0 0 0 19px rgba(255,255,255,.12),0 20px 40px rgba(0,0,0,.6)!important;animation:kkspin 9s linear infinite;animation-play-state:paused}
+.rp-cover{border-radius:50%!important;box-shadow:0 0 0 14px #0c0a09,0 0 0 15px rgba(255,255,255,.12),0 16px 34px rgba(0,0,0,.55)!important;width:calc(100% - 30px)!important;margin:15px auto;animation:kkspin 9s linear infinite;animation-play-state:paused}
+.app.playing .mini img,.app.playing .pb-l img,.app.playing .fp-cover,.app.playing .rp-cover{animation-play-state:running}
+/* play buttons with grooves, song times as needle-drop tags */
+.playc,.acts .play,.mp-body .play,.pb-ctrls .pp{background:radial-gradient(circle,#FF5A1E 0 55%,#d9480f 56% 60%,#FF5A1E 61%)!important;color:#16130F!important}
+.trk .tst{background:rgba(255,90,30,.14);color:#FF7A45!important;padding:3px 8px;border-radius:20px;font-weight:700;justify-self:end}
+.trk .tst::before{content:"▸ "}
+.thead .tst{background:none!important;padding:0!important}.thead .tst::before{content:none}
 </style>
 
 </head>
@@ -662,7 +695,7 @@ const unitPrice = () => member() ? MEMBER_PRICE : PRICE;
 const itemPrice = c => c.special ?? unitPrice();
 const cover = id => COVERS[id] || '';
 /* Cover with a gold tick in the corner when the fan has bought the mix */
-const cv = (id, playBtn) => `<span class="cv"><img src="${cover(id)}" alt="" loading="lazy">${owns(id) ? `<i class="own-tick" title="You own this mix">${ic('check')}</i>` : ''}${playBtn ? `<button class="tplay" data-act="play" data-id="${id}" aria-label="Play" title="Play">${ic('play')}</button>` : ''}</span>`;
+const cv = (id, playBtn) => `<span class="cv"><span class="kkrec" aria-hidden="true"></span><img src="${cover(id)}" alt="" loading="lazy">${owns(id) ? `<i class="own-tick" title="You own this mix">${ic('check')}</i>` : ''}${playBtn ? `<button class="tplay" data-act="play" data-id="${id}" aria-label="Play" title="Play">${ic('play')}</button>` : ''}</span>`;
 const col = id => (COLORS[id] || ['#4a3a55', '#2e2436']);
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const MONL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -929,7 +962,7 @@ function mixPage(id){
       <button data-act="back" aria-label="Back">${ic('back')}</button><div class="htitle">${m.t}</div><span></span>
       <button class="pin" data-act="${cur && S.playing ? 'toggle' : 'play'}" data-id="${id}" aria-label="Play">${ic(cur && S.playing ? 'pause' : 'play')}</button>
     </div>
-    <div class="mp-hero g"><img class="mp-cover" src="${cover(id)}" alt="Cover of ${m.t}">
+    <div class="mp-hero g"><span class="kkmprec" aria-hidden="true"></span><img class="mp-cover" src="${cover(id)}" alt="Cover of ${m.t}">
       <div class="mp-info"><div class="mp-kind">Mixtape</div><h1 class="mp-t">${m.t}</h1>
         <div class="mp-sub"><div class="artist"><img src="${ARTIST.face}" alt="">DJ Kelly Kay</div>
         <div class="mp-meta">Mixtape · ${fmtDate(m.d)}${latest ? ' · <b>Latest release</b>' : ''}<span class="d-only">${tr.length ? ` · ${tr.length} songs` : ''}, ${hrs(m.len)}</span></div></div></div></div>
