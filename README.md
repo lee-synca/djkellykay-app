@@ -2,8 +2,8 @@
 
 Fan app and Control Centre demo for DJ Kelly Kay, built by Synca.
 
-- Fan app: https://lee-synca.github.io/djkellykay-app/
-- Control Centre: https://lee-synca.github.io/djkellykay-app/control/
+- Fan app: https://app.djkellykay.com/
+- Control Centre: https://app.djkellykay.com/control/
 
 The music is real: every mix streams his MP3s from files.djkellykay.com. Fans, sales, payments and messages are demo data.
 Song start times were found automatically from the audio and are estimates to check in the Control Centre's waveform editor.

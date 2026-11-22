@@ -1283,8 +1283,8 @@ function maybeInstall(){
   installAsked = true;
   setTimeout(() => { if ($('sheet').hidden) installSheet(); }, 900);
 }
-const APP_URL = 'https://lee-synca.github.io/djkellykay-app/';
-const appUrl = () => /github\.io$/.test(location.hostname) ? location.href.split('#')[0] : APP_URL;
+const APP_URL = 'https://app.djkellykay.com/';
+const appUrl = () => /github\.io$|djkellykay\.com$/.test(location.hostname) ? location.href.split('#')[0] : APP_URL;
 function drawQR(url){
   const box = $('qr'); if (!box) return;
   const go = () => { try { box.innerHTML = ''; new QRCode(box, {text: url, width: 168, height: 168, colorDark: '#131110', colorLight: '#ffffff'}); } catch (e) { box.remove(); } };
