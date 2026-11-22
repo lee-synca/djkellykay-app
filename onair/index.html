@@ -599,7 +599,8 @@ html:has(.app:not(.desk)),body:has(.app:not(.desk)){background:#f4ede1}
 .app:not(.desk) .ichip{background:rgba(29,25,21,.08)}
 .app:not(.desk) .sbox{box-shadow:0 0 0 1px var(--line)}
 .app:not(.desk) .card h3 small,.app:not(.desk) .qlist h3 small{color:var(--muted)}
-.app:not(.desk) .sheet{box-shadow:0 -10px 30px rgba(29,25,21,.18)}
+.app:not(.desk) .sheet{background:#fffaf1;color:var(--fg);box-shadow:0 -10px 30px rgba(29,25,21,.18)}
+.app:not(.desk) #sheet{background:rgba(29,25,21,.45)}
 /* tab bar: a floating strip at the bottom */
 .app:not(.desk) .nav{left:12px;right:12px;bottom:calc(8px + var(--nb));border-radius:20px;background:#1d1915;padding:6px;gap:4px;box-shadow:0 10px 26px rgba(29,25,21,.3)}
 .app:not(.desk) .nav::before{display:none}
@@ -624,6 +625,10 @@ html:has(.app:not(.desk)),body:has(.app:not(.desk)){background:#f4ede1}
 .oa-pp .ic{width:20px;height:20px}
 .oa-mini .bar{left:28px!important;right:28px!important;bottom:3px!important;background:rgba(29,25,21,.1)!important}
 .oa-mini .bar i{background:#FF5A1E!important}
+.oa-mbtn{display:flex;align-items:center;gap:8px}
+.oa-x{display:none}
+.oa-mpgrid{display:block}
+.oa-lineup{display:block}
 /* shared */
 .oa .cv img{display:block;object-fit:cover}
 .oa-b{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 15px;border-radius:13px;font-weight:700;font-size:14px;background:#1d1915;color:#f4ede1;white-space:nowrap}
@@ -721,6 +726,61 @@ html:has(.app:not(.desk)),body:has(.app:not(.desk)){background:#f4ede1}
 .oa-low{display:flex;justify-content:space-between;margin:14px 0 18px;color:#cfc4b4}
 .oa-low button .ic{width:22px;height:22px}
 .oa-fp .card.plain{background:#2a251f}
+
+/* ---------- computers and tablets in landscape: the same On Air pages, wider ---------- */
+@media (min-width:1024px){
+  .app:not(.fit) .oa,.app:not(.fit) #screen > .g,.app:not(.fit) #overlay > .g{max-width:1120px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px}
+  .app:not(.fit) .nav{top:12px;bottom:auto;left:50%;right:auto;transform:translateX(-50%);width:500px;border-radius:18px}
+  .app:not(.fit) .nav button,.app:not(.fit) .nav button:not(.on){font-size:13px;gap:7px;padding:10px 0}
+  .app:not(.fit) .nav button.on{flex:1.3}
+  .app:not(.fit) .oa-top{height:68px;padding-top:0}
+  .app:not(.fit) .oa-brand{font-size:22px}
+  .app:not(.fit) .hd.stick{min-height:68px}
+  .app:not(.fit) #mini{left:50%;right:auto;bottom:22px;transform:translateX(-50%);width:min(820px,calc(100% - 80px))}
+  .app:not(.fit) .oa-mini{grid-template-columns:54px minmax(0,1fr) auto!important;padding:8px 14px 10px 8px!important;border-radius:22px!important}
+  .app:not(.fit) .oa-disc{width:54px;height:54px}
+  .app:not(.fit) .oa-mini .mt{font-size:15px}
+  .app:not(.fit) .oa-x{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;color:#1d1915}
+  .app:not(.fit) .oa-x .ic{width:22px;height:22px}
+  .app:not(.fit) .oa-mbtn .vol{display:block;width:120px;margin:0 0 0 10px;--c:#FF5A1E}
+  .app:not(.fit) .oa-mbtn .vol::-webkit-slider-runnable-track{background:linear-gradient(to right,#FF5A1E var(--p),rgba(29,25,21,.15) var(--p))}
+  .app:not(.fit) .oa-mbtn .vol::-webkit-slider-thumb{background:#1d1915}
+  .app:not(.fit) .oa-pp{width:48px;height:48px}
+  .app:not(.fit) .oa-air{padding:24px 26px;display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:30px;align-items:end}
+  .app:not(.fit) .oa-live{grid-column:1/-1;justify-self:start}
+  .app:not(.fit) .oa-airrow{grid-template-columns:210px minmax(0,1fr);gap:24px;margin-top:16px}
+  .app:not(.fit) .oa-airrow .cv img{width:210px;height:210px;border-radius:20px}
+  .app:not(.fit) .oa-airt{font-size:38px}
+  .app:not(.fit) .oa-airs{font-size:15px}
+  .app:not(.fit) .oa-airb{flex-direction:column;margin:0}
+  .app:not(.fit) .oa-airb .oa-b{padding:15px;font-size:16px}
+  .app:not(.fit) .oa-h{margin-top:34px}
+  .app:not(.fit) .oa-h h2{font-size:21px}
+  .app:not(.fit) .oa-lineup{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+  .app:not(.fit) .oa-slot{cursor:pointer;border-radius:12px;padding:10px 8px;margin:0 -8px}
+  .app:not(.fit) .oa-slot:hover,.app:not(.fit) .oa-tl:hover{background:var(--elev)}
+  .app:not(.fit) .oa-vibe{padding:14px 20px;font-size:15px}
+  .app:not(.fit) .oa-back{padding-top:84px;background:transparent;position:static}
+  .app:not(.fit) .oa-back span{display:none}
+  .app:not(.fit) .oa-mpgrid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:56px;align-items:start}
+  .app:not(.fit) .oa-left{position:sticky;top:20px}
+  .app:not(.fit) .oa-mh{grid-template-columns:1fr;gap:18px}
+  .app:not(.fit) .oa-mh .cv img{width:100%;height:auto;aspect-ratio:1;border-radius:22px}
+  .app:not(.fit) .oa-mh h1{font-size:34px}
+  .app:not(.fit) .oa-tline{margin-top:4px}
+  .app:not(.fit) .oa-tl{padding:10px 10px;margin-right:-10px;border-radius:10px}
+  .app:not(.fit) .oa-tl .oa-dot{left:-23px}
+  .app:not(.fit) .oa-tl.cur .oa-dot{left:-26px}
+  .app:not(.fit) .oa-fp{max-width:820px;margin:0 auto;padding-left:40px;padding-right:40px}
+  .app:not(.fit) .oa-song{font-size:72px;margin-top:40px}
+  .app:not(.fit) .oa-art{font-size:20px}
+  .app:not(.fit) .oa-dial{height:84px}.app:not(.fit) .oa-bars{height:52px}.app:not(.fit) .oa-played{height:52px}.app:not(.fit) .oa-seek{height:84px!important}
+  .app:not(.fit) .oa-ctl{max-width:520px;margin-left:auto;margin-right:auto}
+  .app:not(.fit) .cats{grid-template-columns:repeat(4,1fr)}
+  .app:not(.fit) #sheet{align-items:center;justify-content:center}
+  .app:not(.fit) .sheet{max-width:520px;border-radius:20px;max-height:82%}
+  .app:not(.fit) .endpad{height:150px}
+}
 </style>
 
 </head>
@@ -1165,7 +1225,7 @@ function mini(){
 
 /* ---------- desktop regions ---------- */
 const deskMQ = matchMedia('(min-width:1024px)');
-const isDesk = () => deskMQ.matches && !$('app').classList.contains('fit');
+const isDesk = () => false;   // On Air copy: one layout that widens on big screens, no Spotify-style desktop frame
 const songNow = () => { const tr = tracks(S.now), pct = S.preview ? (dur() / toSecs(byId[S.now].len)) * S.progress : S.progress, ti = trackAt(S.now, pct); return ti >= 0 ? tr[ti] : null; };
 function topbar(){
   const home = S.tab === 'home' && !S.stack.length;
@@ -1895,7 +1955,7 @@ function openCtx(id, x, y){
 }
 function hideCtx(){ const box = $('ctx'); if (box && box.classList.contains('on')) { box.classList.remove('on'); box.innerHTML = ''; } }
 document.addEventListener('contextmenu', e => {
-  if (!isDesk() || !S.signedIn) return;
+  if (!deskMQ.matches || !S.signedIn) return;
   const el = e.target.closest('[data-id]');
   if (!el || !byId[el.dataset.id] || e.target.closest('input')) return;
   e.preventDefault(); openCtx(el.dataset.id, e.clientX, e.clientY);
@@ -1968,7 +2028,7 @@ document.addEventListener('fullscreenchange', () => { if (!document.fullscreenEl
       <div class="oa-top"><div class="oa-brand">DJ KELLY <i>KAY</i></div><span style="flex:1"></span>${cartIcon()}${avatarBtn()}</div>
       <div class="oa-seg">${[['all','All'],['owned','Your mixes'],['new','Not owned']].map(([k, l]) => `<button class="${f === k ? 'on' : ''}" data-act="hfilter" data-f="${k}">${l}</button>`).join('')}</div>
       ${banners}${air}
-      ${rest.length ? `<div class="oa-h"><h2>The line-up</h2><span>${rest.length} more</span></div>${rest.map(slot).join('')}` : ''}
+      ${rest.length ? `<div class="oa-h"><h2>The line-up</h2><span>${rest.length} more</span></div><div class="oa-lineup">${rest.map(slot).join('')}</div>` : ''}
       <div class="oa-h"><h2>Browse by vibe</h2></div>
       <div class="oa-vibes">${vibes.map(c => `<button class="oa-vibe" style="--vc:${c.bg}" data-act="cat" data-id="${c.id}">${c.name}<small>${c.pick().length}</small></button>`).join('')}</div>
       <div class="endpad"></div></div>`;
@@ -1988,10 +2048,11 @@ document.addEventListener('fullscreenchange', () => { if (!document.fullscreenEl
       : `<div class="trk oa-tl" data-act="play" data-id="${id}"><i class="oa-dot"></i><div class="oa-tt"><b>${m.t} (full mix)</b><small>DJ Kelly Kay · ${hrs(m.len)}</small></div><span class="tab">0:00</span></div>`;
     return `<div class="oa oa-mp">
       <div class="oa-back g"><button data-act="back" aria-label="Back">${ic('back')}</button><span>${m.t}</span></div>
-      <div class="oa-mh g">${cv(id)}<div style="min-width:0"><div class="oa-k" style="color:${tc}">${tn} · ${year(m)}</div><h1>${m.t}</h1><p>${songs(m)}${hrs(m.len)}${own ? ' · Yours' : ''}</p></div></div>
-      <div class="oa-acts g">${main}${second}<button class="oa-b o sq" data-act="mixmore" data-id="${id}" aria-label="More options">${ic('dots')}</button></div>
-      ${!canPlay(id) ? `<div class="g"><p class="oa-note">You'll hear the first ${PREVIEW_MIN} minutes. Buy it to keep and download, or stream everything with Listen.</p></div>` : ''}
-      <div class="oa-tline g">${rows}</div>
+      <div class="oa-mpgrid g"><div class="oa-left">
+      <div class="oa-mh">${cv(id)}<div style="min-width:0"><div class="oa-k" style="color:${tc}">${tn} · ${year(m)}</div><h1>${m.t}</h1><p>${songs(m)}${hrs(m.len)}${own ? ' · Yours' : ''}</p></div></div>
+      <div class="oa-acts">${main}${second}<button class="oa-b o sq" data-act="mixmore" data-id="${id}" aria-label="More options">${ic('dots')}</button></div>
+      ${!canPlay(id) ? `<div><p class="oa-note">You'll hear the first ${PREVIEW_MIN} minutes. Buy it to keep and download, or stream everything with Listen.</p></div>` : ''}
+      </div><div class="oa-tline">${rows}</div></div>
       <div class="g"><div class="oa-h"><h2>More from DJ Kelly Kay</h2></div>${vis().filter(x => x.id !== id).map(slot).join('')}</div>
       <div class="endpad"></div></div>`;
   };
@@ -2025,7 +2086,8 @@ document.addEventListener('fullscreenchange', () => { if (!document.fullscreenEl
     const m = byId[S.now];
     return `<div class="mini oa-mini ${S.playing ? 'spin' : ''}" data-act="expand"><span class="oa-disc"><img src="${cover(m.id)}" alt=""></span>
       <div style="min-width:0"><div class="mt">${m.t}</div><div class="ms" id="msub">${S.preview ? 'Preview · ' : ''}DJ Kelly Kay</div></div>
-      <button class="oa-pp" data-act="toggle" aria-label="${S.playing ? 'Pause' : 'Play'}">${ic(S.playing ? 'pause' : 'play')}</button>
+      <div class="oa-mbtn"><button class="oa-x" data-act="prev" aria-label="Previous">${ic('prev')}</button><button class="oa-pp" data-act="toggle" aria-label="${S.playing ? 'Pause' : 'Play'}">${ic(S.playing ? 'pause' : 'play')}</button><button class="oa-x" data-act="next" aria-label="Next">${ic('next')}</button>
+        <input class="seek vol oa-x" id="vol" type="range" min="0" max="100" value="${S.vol}" aria-label="Volume" style="--p:${S.vol}%"></div>
       <div class="bar"><i id="mbar"></i></div></div>`;
   };
 
