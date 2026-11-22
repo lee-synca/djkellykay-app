@@ -613,6 +613,24 @@ a.btn{text-decoration:none}
 .fp-cover{border-radius:50%!important;width:72%!important;margin-top:24px!important;box-shadow:0 0 0 18px #0c0a09,0 0 0 19px rgba(255,255,255,.12),0 20px 40px rgba(0,0,0,.6)!important;animation:kkspin 9s linear infinite;animation-play-state:paused}
 .rp-cover{border-radius:50%!important;box-shadow:0 0 0 14px #0c0a09,0 0 0 15px rgba(255,255,255,.12),0 16px 34px rgba(0,0,0,.55)!important;width:calc(100% - 30px)!important;margin:15px auto;animation:kkspin 9s linear infinite;animation-play-state:paused}
 .app.playing .mini img,.app.playing .pb-l img,.app.playing .fp-cover,.app.playing .rp-cover{animation-play-state:running}
+/* Search: record crates instead of Spotify-style category boxes */
+.cats{gap:16px 12px}
+.cat.crate{height:140px;padding:0;overflow:visible;background:none!important;border-radius:0}
+.cat.crate .crate-rec{position:absolute;display:block;max-width:none;left:50%;top:0;width:100px;height:100px;margin-left:-50px;border-radius:50%;z-index:1;
+  background:conic-gradient(from 20deg,transparent 0 12%,rgba(255,235,210,.22) 18%,transparent 26% 62%,rgba(255,235,210,.16) 68%,transparent 75%),repeating-radial-gradient(circle,#161311 0 2px,#3a332d 2px 3.2px);
+  box-shadow:0 0 0 1.5px rgba(242,236,226,.22),0 6px 16px rgba(0,0,0,.55);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cat.crate .crate-rec img{position:absolute;left:50%;top:50%;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;transform:none;right:auto;bottom:auto;box-shadow:0 0 0 2px #0c0a09;object-fit:cover}
+.cat.crate .crate-rec::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#0c0a09;z-index:2}
+.cat.crate .crate-sleeve{position:absolute;display:flex;flex-direction:column;justify-content:flex-end;max-width:none;left:0;right:0;bottom:0;height:92px;z-index:2;border-radius:10px;
+  padding:10px 12px;background:var(--cc);box-shadow:inset 0 7px 0 rgba(0,0,0,.18),0 6px 14px rgba(0,0,0,.3)}
+.cat.crate .crate-sleeve b{font-size:16px;font-weight:800;line-height:1.15;color:#fff}
+.cat.crate .crate-sleeve small{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.82);margin-top:2px}
+.cat.crate:hover .crate-rec,.cat.crate:active .crate-rec{transform:translateY(-8px) rotate(50deg)}
+.desk .cat.crate{height:190px;aspect-ratio:auto;padding:0}
+.desk .cat.crate .crate-rec{width:140px;height:140px;margin-left:-70px}
+.desk .cat.crate .crate-sleeve{height:124px;padding:14px 16px}
+.desk .cat.crate .crate-sleeve b{font-size:20px}
+.desk .cat.crate .crate-sleeve small{font-size:13px}
 /* play buttons with grooves, song times as needle-drop tags */
 .playc,.acts .play,.mp-body .play,.pb-ctrls .pp{background:radial-gradient(circle,#FF5A1E 0 55%,#d9480f 56% 60%,#FF5A1E 61%)!important;color:#16130F!important}
 .trk .tst{background:rgba(255,90,30,.14);color:#FF7A45!important;padding:3px 8px;border-radius:20px;font-weight:700;justify-self:end}
@@ -870,7 +888,7 @@ function search(){
       ${!mixes.length && !songs.length ? `<p class="empty">No mixes or songs match “${S.q.replace(/</g,'&lt;')}”. Try an artist like 2Pac or Rihanna.</p>` : ''}`;
   } else {
     body = `<div class="sec" style="margin-top:22px"><h2 style="font-size:17px">Browse all</h2></div>
-      <div class="cats">${(() => { const used = new Set(); return CATS.map(c => { const l = c.pick(), p = l.find(m => !used.has(m.id)) || l[0]; if (p) used.add(p.id); return `<div class="cat" style="background:${c.bg}" data-act="cat" data-id="${c.id}"><span>${c.name}</span>${p ? `<img src="${cover(p.id)}" alt="">` : ''}</div>`; }).join(''); })()}</div>`;
+      <div class="cats">${(() => { const used = new Set(); return CATS.map(c => { const l = c.pick(), p = l.find(m => !used.has(m.id)) || l[0]; if (p) used.add(p.id); return `<div class="cat crate" style="--cc:${c.bg}" data-act="cat" data-id="${c.id}"><span class="crate-rec" aria-hidden="true">${p ? `<img src="${cover(p.id)}" alt="">` : ''}</span><span class="crate-sleeve"><b>${c.name}</b><small>${l.length} ${l.length === 1 ? 'mix' : 'mixes'}</small></span></div>`; }).join(''); })()}</div>`;
   }
   return `<div class="g">
     <div class="hd m-only">${avatarBtn()}<div class="h-title">Search</div>${cartIcon()}</div>
