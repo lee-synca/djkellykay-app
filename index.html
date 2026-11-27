@@ -1058,7 +1058,7 @@ function fullPlayer(){
     ${cta}
     <div class="about"><div class="ab-img" style="background-image:url(${ARTIST.hero})"><span>About the artist</span></div>
       <div class="ab-b"><b>DJ Kelly Kay</b><div class="ab-row"><span>${vis().length} mixes in the app</span><button class="pill ${S.follow ? 'line' : ''}" data-act="follow">${S.follow ? 'Following' : 'Follow'}</button></div>
-      <p>Mixtapes across R&amp;B, hip hop, reggae, island and Pacific sounds, from The 90's Tape to We Are 685. Follow to hear about new mixes first.</p></div></div>
+      <p>Mixtapes across 90s R&amp;B, hip hop, island reggae and Pacific sounds, from Y2KLR in 1999 to Club Roma. Follow to hear about new mixes first.</p></div></div>
   </div>`;
 }
 
@@ -1115,7 +1115,7 @@ function rpanel(){
     ${cta}
     <div class="about"><div class="ab-img" style="background-image:url(${ARTIST.hero})"><span>About the artist</span></div>
       <div class="ab-b"><b>DJ Kelly Kay</b><div class="ab-row"><span>${vis().length} mixes in the app</span><button class="pill ${S.follow ? 'line' : ''}" data-act="follow">${S.follow ? 'Following' : 'Follow'}</button></div>
-      <p>Mixtapes across R&amp;B, hip hop, reggae, island and Pacific sounds, from The 90's Tape to We Are 685.</p></div></div>
+      <p>Mixtapes across 90s R&amp;B, hip hop, island reggae and Pacific sounds, from Y2KLR in 1999 to Club Roma.</p></div></div>
     ${nx ? `<div class="card plain rp-next"><h3>Next in queue <button data-act="queue">Open queue</button></h3><div class="row" data-act="play" data-id="${nx.id}">${cv(nx.id)}<div style="min-width:0"><div class="rt">${nx.t}</div><div class="rs">DJ Kelly Kay ${canPlay(nx.id) ? '' : '<span class="badge pv">Preview</span>'}</div></div><span></span></div></div>` : ''}
   </div>`;
 }

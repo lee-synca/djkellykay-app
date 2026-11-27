@@ -1,7 +1,7 @@
 /* DJ Kelly Kay offline helper.
    - The app page: always try the internet first (so updates show straight away), fall back to the saved copy offline.
    - Icons, manifest and fonts: use the saved copy, fetch and save it the first time. */
-const CACHE = 'kkoa-a7fc2763c9';
+const CACHE = 'kkoa-32916ed900';
 const SHELL = ['./', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
